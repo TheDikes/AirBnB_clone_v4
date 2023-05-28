@@ -6,7 +6,11 @@ from api.v1.views import app_views
 from flask import jsonify, request
 from models import storage
 
-@app_views.route('/status', strict_slashes=False)
-def returnstuff():
-    '''return stuff'''
-    return jsonify(status='OK')
+@app_views.route('/status', methods=['GET'])
+def status():
+    """
+    function for status route that returns the status
+    """
+    if request.method == 'GET':
+        resp = {"status": "OK"}
+        return jsonify(resp)
