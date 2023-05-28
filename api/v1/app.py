@@ -17,15 +17,10 @@ def downtear(self):
     '''Status of your API'''
     storage.close()
 
-@app.errorhandler(404)
-def handle_404(exception):
-    """
-    handles 404 errors, in the event that global error handler fails
-    """
-    code = exception.__str__().split()[0]
-    description = exception.description
-    message = {'error': description}
-    return make_response(jsonify(message), code)
+
+@app.errorhandler(404) 
+def invalid_route(e): 
+    return jsonify({'errorCode' : 404, 'error' : 'Not found'})
 
 if __name__ == "__main__":
     host = getenv('HBNB_API_HOST')
