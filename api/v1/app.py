@@ -18,9 +18,14 @@ def downtear(self):
     storage.close()
 
 @app.errorhandler(404)
-def page_not_found(error):
-    '''return render_template'''
-    return jsonify(('error'='Not found'), 404)    
+def handle_404(exception):
+    """
+    handles 404 errors, in the event that global error handler fails
+    """
+    code = exception.__str__().split()[0]
+    description = exception.description
+    message = {'error': description}
+    return make_response(jsonify(message), code)
 
 if __name__ == "__main__":
     host = getenv('HBNB_API_HOST')
