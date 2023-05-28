@@ -7,6 +7,7 @@ from os import getenv
 from api.v1.views import app_views
 from models import storage
 
+
 # Global Flask Application Variable: app
 app = Flask(__name__)
 app.register_blueprint(app_views)
@@ -21,6 +22,7 @@ def downtear(self):
 @app.errorhandler(404)
 def invalid_route(e):
     return jsonify({'errorCode': 404, 'error': 'Not found'})
+
 
 if __name__ == "__main__":
     host = getenv('HBNB_API_HOST')
