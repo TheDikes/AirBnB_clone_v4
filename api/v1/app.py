@@ -4,6 +4,7 @@ Flask App
 """
 from flask import Flask, jsonify, abort
 from os import getenv
+from flask_cors import CORS
 from api.v1.views import app_views
 from models import storage
 
@@ -11,6 +12,8 @@ from models import storage
 # Global Flask Application Variable: app
 app = Flask(__name__)
 app.register_blueprint(app_views)
+app.url_map.strict_slashes = False
+cors = CORS(app, resources={r"/api/*": {"origins": "0.0.0.0"}})
 
 
 @app.teardown_appcontext
