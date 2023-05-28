@@ -18,9 +18,9 @@ def downtear(self):
     storage.close()
 
 
-@app.errorhandler(404) 
-def invalid_route(e): 
-    return jsonify({'errorCode' : 404, 'error' : 'Not found'})
+@app.errorhandler(404)
+def invalid_route(e):
+    return jsonify({'errorCode': 404, 'error': 'Not found'})
 
 if __name__ == "__main__":
     host = getenv('HBNB_API_HOST')
