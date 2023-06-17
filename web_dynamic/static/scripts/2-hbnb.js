@@ -18,4 +18,21 @@ $(document).ready(function () {
       $('.amenities h4').html('&nbsp;');
     }
   });
+  $.ajax(
+    {
+     url: 'http://0.0.0.0:5001/api/v1/status/',
+     type: 'GET',
+     dataType: 'json',
+     success: function (response) {
+	 if (response.status === 'OK') {
+	     $('DIV#api_status').addClass('available');
+	 } else {
+	     $('DIV#api_status').removeClass('available');
+	 }
+    },
+	error: function (error) {
+	    $('DIV#api_status').removeClass('available');
+	}
+    }
+  )
 });
